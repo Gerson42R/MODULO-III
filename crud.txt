@@ -1,0 +1,27 @@
+Leer
+
+db.Estudiantes.findOne({
+     carrera: "Informatica" 
+});
+
+Insertar
+
+db.Estudiantes.insertOne({
+    nombre: "Alvaro Argueta",
+    edad: 23,
+    carrera: "Informatica",
+    promedio: "8.5"
+});
+
+Actualizar:
+
+db.Estudiantes.updateOne(
+    { promedio: 8.5 },
+    { $set: { edad: 25 } }
+);
+
+Eliminar:
+
+db.Estudiantes.deleteOne({
+    edad: 25
+});
