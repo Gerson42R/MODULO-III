@@ -1,0 +1,7 @@
+Crear base de datos:
+
+use Instituno_Nacional;
+
+Crear colección;
+
+db.createCollection("Estudiantes");
