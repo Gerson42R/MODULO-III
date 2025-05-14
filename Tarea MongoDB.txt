@@ -1,0 +1,355 @@
+Paso 1: Creación de la base de datos y colección
+
+use usuarioUNAB
+
+db.clientes.insertMany([
+
+  { nombre: "Ana", ciudad: "Lima", edad: 28, correo: "ana@gmail.com" },
+
+  { nombre: "Carlos", ciudad: "Bogotá", edad: 34, correo: "carlos@yahoo.com" },
+
+  { nombre: "María", ciudad: "Lima", edad: 22, correo: "maria@hotmail.com" },
+
+  { nombre: "José", ciudad: "Quito", edad: 40, correo: "jose@gmail.com" },
+
+  { nombre: "Lucía", ciudad: "Bogotá", edad: 19, correo: "lucia@outlook.com" },
+
+  { nombre: "Pedro", ciudad: "Lima", edad: 35, correo: "pedro@gmail.com" } ])
+
+Respuesta:
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68240148d458d780571431d6'),
+    '1': ObjectId('68240148d458d780571431d7'),
+    '2': ObjectId('68240148d458d780571431d8'),
+    '3': ObjectId('68240148d458d780571431d9'),
+    '4': ObjectId('68240148d458d780571431da'),
+    '5': ObjectId('68240148d458d780571431db')
+  }
+}
+
+
+
+Paso 2: Consultas básicas y filtros
+
+db.clientes.find()
+
+db.clientes.find({ ciudad: "Lima" })
+
+db.clientes.find({ edad: { $gt: 30 } })
+
+db.clientes.find({ edad: { $lte: 22 } })
+
+db.clientes.find({ ciudad: { $ne: "Bogotá" } })
+
+db.clientes.find({ ciudad: "Lima", edad: { $gt: 25 } })
+
+Respuesta:
+{
+  _id: ObjectId('68240148d458d780571431d6'),
+  nombre: 'Ana',
+  ciudad: 'Lima',
+  edad: 28,
+  correo: 'ana@gmail.com'
+}
+{
+  _id: ObjectId('68240148d458d780571431db'),
+  nombre: 'Pedro',
+  ciudad: 'Lima',
+  edad: 35,
+  correo: 'pedro@gmail.com'
+}
+
+
+Parte 3: Operadores lógicos
+
+db.clientes.find({ ciudad: { $in: ["Lima", "Bogotá"] } })
+
+db.clientes.find({ ciudad: { $nin: ["Lima", "Quito"] } })
+
+db.clientes.find({ $or: [ { edad: { $lt: 20 } }, { ciudad: "Quito" } ] })
+
+Respuesta:
+{
+  _id: ObjectId('68240148d458d780571431d9'),
+  nombre: 'José',
+  ciudad: 'Quito',
+  edad: 40,
+  correo: 'jose@gmail.com'
+}
+{
+  _id: ObjectId('68240148d458d780571431da'),
+  nombre: 'Lucía',
+  ciudad: 'Bogotá',
+  edad: 19,
+  correo: 'lucia@outlook.com'
+}
+
+
+Parte 4: Proyección de campos
+
+db.clientes.find({}, { nombre: 1, ciudad: 1, _id: 0 })
+
+db.clientes.find({}, { correo: 0 })
+
+Respuesta:
+{
+  _id: ObjectId('68240148d458d780571431d6'),
+  nombre: 'Ana',
+  ciudad: 'Lima',
+  edad: 28
+}
+{
+  _id: ObjectId('68240148d458d780571431d7'),
+  nombre: 'Carlos',
+  ciudad: 'Bogotá',
+  edad: 34
+}
+{
+  _id: ObjectId('68240148d458d780571431d8'),
+  nombre: 'María',
+  ciudad: 'Lima',
+  edad: 22
+}
+{
+  _id: ObjectId('68240148d458d780571431d9'),
+  nombre: 'José',
+  ciudad: 'Quito',
+  edad: 40
+}
+{
+  _id: ObjectId('68240148d458d780571431da'),
+  nombre: 'Lucía',
+  ciudad: 'Bogotá',
+  edad: 19
+}
+{
+  _id: ObjectId('68240148d458d780571431db'),
+  nombre: 'Pedro',
+  ciudad: 'Lima',
+  edad: 35
+}
+
+
+Parte 5: Ordenamiento y límites
+
+db.clientes.find().sort({ edad: 1 })
+
+db.clientes.find().sort({ edad: -1 })
+
+db.clientes.find().limit(3)
+
+db.clientes.find().skip(2)
+
+Respuesta:
+{
+  _id: ObjectId('68240148d458d780571431d8'),
+  nombre: 'María',
+  ciudad: 'Lima',
+  edad: 22,
+  correo: 'maria@hotmail.com'
+}
+{
+  _id: ObjectId('68240148d458d780571431d9'),
+  nombre: 'José',
+  ciudad: 'Quito',
+  edad: 40,
+  correo: 'jose@gmail.com'
+}
+{
+  _id: ObjectId('68240148d458d780571431da'),
+  nombre: 'Lucía',
+  ciudad: 'Bogotá',
+  edad: 19,
+  correo: 'lucia@outlook.com'
+}
+{
+  _id: ObjectId('68240148d458d780571431db'),
+  nombre: 'Pedro',
+  ciudad: 'Lima',
+  edad: 35,
+  correo: 'pedro@gmail.com'
+}
+
+
+Parte 6: Índices
+
+db.clientes.createIndex({ ciudad: 1 })
+
+db.clientes.createIndex({ ciudad: 1, edad: -1 })
+
+db.clientes.createIndex({ correo: 1 }, { unique: true })
+
+Respuesta:
+correo_1
+
+
+
+Parte 7: Análisis de rendimiento con .explain()
+
+db.clientes.find({ nombre: "Pedro" }).explain("executionStats")
+
+db.clientes.createIndex({ nombre: 1 })
+
+db.clientes.find({ nombre: "Pedro" }).explain("executionStats")
+
+
+Respuesta: 
+explainVersion: '1',
+  queryPlanner: {
+    namespace: 'test.clientes',
+    parsedQuery: {
+      nombre: {
+        '$eq': 'Pedro'
+      }
+    },
+    indexFilterSet: false,
+    queryHash: '78CE6D7E',
+    planCacheShapeHash: '78CE6D7E',
+    planCacheKey: 'EFDB41A7',
+    optimizationTimeMillis: 3,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'FETCH',
+      inputStage: {
+        stage: 'IXSCAN',
+        keyPattern: {
+          nombre: 1
+        },
+        indexName: 'nombre_1',
+        isMultiKey: false,
+        multiKeyPaths: {
+          nombre: []
+        },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: {
+          nombre: [
+            '["Pedro", "Pedro"]'
+          ]
+        }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 14,
+    totalKeysExamined: 1,
+    totalDocsExamined: 1,
+    executionStages: {
+      isCached: false,
+      stage: 'FETCH',
+      nReturned: 1,
+      executionTimeMillisEstimate: 12,
+      works: 2,
+      advanced: 1,
+      needTime: 0,
+      needYield: 0,
+      saveState: 1,
+      restoreState: 1,
+      isEOF: 1,
+      docsExamined: 1,
+      alreadyHasObj: 0,
+      inputStage: {
+        stage: 'IXSCAN',
+        nReturned: 1,
+        executionTimeMillisEstimate: 12,
+        works: 2,
+        advanced: 1,
+        needTime: 0,
+        needYield: 0,
+        saveState: 1,
+        restoreState: 1,
+        isEOF: 1,
+        keyPattern: {
+          nombre: 1
+        },
+        indexName: 'nombre_1',
+        isMultiKey: false,
+        multiKeyPaths: {
+          nombre: []
+        },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: {
+          nombre: [
+            '["Pedro", "Pedro"]'
+          ]
+        },
+        keysExamined: 1,
+        seeks: 1,
+        dupsTested: 0,
+        dupsDropped: 0
+      }
+    }
+  },
+  queryShapeHash: '721AFF6CA5F5D5F79F53E14A0C5E19611833CC83F350628CF867A653DAE10167',
+  command: {
+    find: 'clientes',
+    filter: {
+      nombre: 'Pedro'
+    },
+    '$db': 'test'
+  },
+  serverInfo: {
+    host: 'Gerson',
+    port: 27017,
+    version: '8.0.9',
+    gitVersion: 'f882ef816d531ecfbb593843e4c554fda90ca416'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
+}
+
+
+
+Parte 8: Eliminación de índices
+
+db.clientes.getIndexes()
+
+db.clientes.dropIndex("nombre_1")
+Respuesta:
+
+{ nIndexesWas: 5, ok: 1 }
+
+
+
+Parte 9: Validación
+
+db.clientes.insertOne({ nombre: "Otro", ciudad: "Cali", edad: 30, correo: "pedro@gmail.com" })
+
+Respuesta: MongoServerError: E11000 duplicate key error collection: test.clientes index: correo_1 dup key: { correo: "pedro@gmail.com" }
+
+
+db.clientes.insertOne({ nombre: "Carlos", ciudad: "Bogota", edad: 33, correo: "carlos@gmail.com" })
+Respuesta:
+{
+  acknowledged: true,
+  insertedId: ObjectId('68240564d458d780571431dd')
+}
+
+
