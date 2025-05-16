@@ -1,0 +1,200 @@
+use unab
+switched to db unab
+db.empleados.insertMany([
+  {
+    nombre: "Marina Gutiérrez",
+    edad: 25,
+    ciudad: "San Salvador",
+    correo: "marina@unab.com",
+    cargo: "Desarrolladora de Base de Datos",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Salvador Hernandez",
+    edad: 35,
+    ciudad: "Roma",
+    correo: "salvador@unab.com",
+    cargo: "Desarrollador de Software",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Maria Umaña",
+    edad: 28,
+    ciudad: "Porto",
+    correo: "maria.umana@unab.com",
+    cargo: "Analista de Datos",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Marisol Aparicio",
+    edad: 25,
+    ciudad: "Ciudad de Mexico",
+    correo: "marisol@unab.com",
+    cargo: "Administradora de redes",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Leonel Zelaya",
+    edad: 40,
+    ciudad: "Berlín",
+    correo: "leonel.zelaya@unab.com",
+    cargo: "Especialista en Ciberseguridad",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Radamel Falcao",
+    edad: 30,
+    ciudad: "Medellín",
+    correo: "radamel@unab.com",
+    cargo: "Técnico de Soporte",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Lionel Messi",
+    edad: 37,
+    ciudad: "Buenos Aires",
+    correo: "lionel@unab.com",
+    cargo: "Diseñador Web",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Johana Perez",
+    edad: 25,
+    ciudad: "San Miguel",
+    correo: "johana28@unab.com",
+    cargo: "Ingeniera DevOps",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Lenin Perez",
+    edad: 24,
+    ciudad: "San Miguel",
+    correo: "lenin@unab.com",
+    cargo: "Desarrollador Backend",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Andres Fuentes",
+    edad: 20,
+    ciudad: "San Miguel",
+    correo: "andres@unab.com",
+    cargo: "Desarrollador Backend",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Alex Diaz",
+    edad: 25,
+    ciudad: "San Miguel",
+    correo: "alex@unab.com",
+    cargo: "Analista QA / Tester",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Maria Herrera",
+    edad: 27,
+    ciudad: "San Miguel",
+    correo: "maria.herrera@unab.com",
+    cargo: "Scrum Master",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Delmi Trejo",
+    edad: 29,
+    ciudad: "Bogotá",
+    correo: "delmi@unab.com",
+    cargo: "Administradora de Sistemas",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Yesli Alvarada",
+    edad: 23,
+    ciudad: "San Miguel",
+    correo: "yesli@unab.com",
+    cargo: "Analista de Datos",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Karina Meléndez",
+    edad: 25,
+    ciudad: "San Salvador",
+    correo: "karina@unab.com",
+    cargo: "Desarrolladora de Base de Datos",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Walter Hernández",
+    edad: 35,
+    ciudad: "Barcelona",
+    correo: "walter@unab.com",
+    cargo: "Desarrollador de Software",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Daniela Umaña",
+    edad: 28,
+    ciudad: "Italia",
+    correo: "daniela@unab.com",
+    cargo: "Analista de Datos",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Sofia Torres",
+    edad: 25,
+    ciudad: "Madrid",
+    correo: "sofia@unab.com",
+    cargo: "Administradora de redes",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Cristiano Ronaldo",
+    edad: 40,
+    ciudad: "Buenos Aires",
+    correo: "cristiano@unab.com",
+    cargo: "Especialista en Ciberseguridad",
+    departamento: "Tecnología"
+  },
+  {
+    nombre: "Frank García",
+    edad: 30,
+    ciudad: "Medellín",
+    correo: "frank@unab.com",
+    cargo: "Técnico de Soporte",
+    departamento: "Tecnología"
+  }
+])
+
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6826b08deef5481f21d8f4c0'),
+    '1': ObjectId('6826b08deef5481f21d8f4c1'),
+    '2': ObjectId('6826b08deef5481f21d8f4c2'),
+    '3': ObjectId('6826b08deef5481f21d8f4c3'),
+    '4': ObjectId('6826b08deef5481f21d8f4c4'),
+    '5': ObjectId('6826b08deef5481f21d8f4c5'),
+    '6': ObjectId('6826b08deef5481f21d8f4c6'),
+    '7': ObjectId('6826b08deef5481f21d8f4c7'),
+    '8': ObjectId('6826b08deef5481f21d8f4c8'),
+    '9': ObjectId('6826b08deef5481f21d8f4c9'),
+    '10': ObjectId('6826b08deef5481f21d8f4ca'),
+    '11': ObjectId('6826b08deef5481f21d8f4cb'),
+    '12': ObjectId('6826b08deef5481f21d8f4cc'),
+    '13': ObjectId('6826b08deef5481f21d8f4cd'),
+    '14': ObjectId('6826b08deef5481f21d8f4ce'),
+    '15': ObjectId('6826b08deef5481f21d8f4cf'),
+    '16': ObjectId('6826b08deef5481f21d8f4d0'),
+    '17': ObjectId('6826b08deef5481f21d8f4d1'),
+    '18': ObjectId('6826b08deef5481f21d8f4d2'),
+    '19': ObjectId('6826b08deef5481f21d8f4d3')
+  }
+}
+
+db.empleados.createIndex({ ciudad: 1 })
+ciudad_1
+db.empleados.createIndex({ ciudad: 1, edad: 1 })
+ciudad_1_edad_1
+db.empleados.createIndex({ correo: 1 }, { unique: true })
+correo_1
+db.empleados.createIndex({ cargo: "text" })
+cargo_text
